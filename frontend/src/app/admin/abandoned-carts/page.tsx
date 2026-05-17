@@ -133,7 +133,7 @@ export default function AbandonedCartsPage() {
         />
         <StatsCard
           title="Recovery Rate"
-          value={`${parseFloat(metrics?.recoveryRate || '0')}%`}
+          value={`${parseFloat(String(metrics?.recoveryRate ?? '0'))}%`}
           icon={TrendingUp}
           color="blue"
         />
