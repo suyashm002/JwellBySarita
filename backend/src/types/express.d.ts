@@ -14,8 +14,8 @@ declare module 'express' {
       id: string;
       email: string | null;
       phone: string | null;
-      name: string;
-      role: 'CUSTOMER' | 'ADMIN' | 'STAFF';
+      name: string | null;
+      role: string;
     };
   }
 }

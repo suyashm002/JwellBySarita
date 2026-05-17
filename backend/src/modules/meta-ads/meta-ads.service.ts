@@ -430,7 +430,7 @@ class MetaAdsService {
     for (const product of products) {
       try {
         const imageUrl =
-          product.images?.[0]?.url || product.images?.[0]?.src || '';
+          product.images?.[0]?.url || '';
         const productData = {
           retailer_id: product.id,
           name: product.name,
@@ -438,7 +438,7 @@ class MetaAdsService {
           availability: 'in stock',
           url: `${config.FRONTEND_URL}/products/${product.slug}`,
           image_url: imageUrl,
-          price: `${product.price || 0} INR`,
+          price: `${Number((product as any).silverWeightGrams || 0) * 100} INR`,
           brand: 'Jewelup by Sarita',
           category: (product as any).category?.name || 'Jewellery',
         };
