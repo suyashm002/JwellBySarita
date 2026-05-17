@@ -16,6 +16,7 @@ declare module 'express' {
       phone: string | null;
       name: string | null;
       role: string;
+      isActive: boolean;
     };
   }
 }
