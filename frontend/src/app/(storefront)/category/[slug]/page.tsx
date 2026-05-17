@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
@@ -18,7 +18,7 @@ const SORT_OPTIONS = [
 
 const ITEMS_PER_PAGE = 12;
 
-export default function CategoryPage() {
+function CategoryContent() {
   const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -216,5 +216,13 @@ export default function CategoryPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function CategoryPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-[50vh]"><div className="animate-spin h-8 w-8 border-4 border-[#722F37] border-t-transparent rounded-full" /></div>}>
+      <CategoryContent />
+    </Suspense>
   );
 }

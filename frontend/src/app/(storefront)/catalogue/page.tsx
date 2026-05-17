@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { productAPI, categoryAPI } from '@/lib/api';
@@ -19,7 +19,7 @@ const SORT_OPTIONS = [
 
 const ITEMS_PER_PAGE = 12;
 
-export default function CataloguePage() {
+function CatalogueContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -242,5 +242,13 @@ export default function CataloguePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CataloguePage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-[50vh]"><div className="animate-spin h-8 w-8 border-4 border-[#722F37] border-t-transparent rounded-full" /></div>}>
+      <CatalogueContent />
+    </Suspense>
   );
 }

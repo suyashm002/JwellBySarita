@@ -9,8 +9,9 @@ import { Order } from '@/types/order';
 import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/lib/utils';
 import { useCartStore } from '@/stores/cartStore';
+import { Suspense } from 'react';
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderId');
   const orderNumberParam = searchParams.get('orderNumber');
@@ -127,5 +128,13 @@ export default function OrderSuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin h-8 w-8 border-4 border-[#722F37] border-t-transparent rounded-full" /></div>}>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }
