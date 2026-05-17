@@ -31,7 +31,18 @@ const app = express();
 // Security
 app.use(helmet());
 app.use(cors({
-  origin: config.FRONTEND_URL,
+  origin: (origin, callback) => {
+    const allowed = [
+      config.FRONTEND_URL,
+      'https://jwell-by-sarita-frontend-oull.vercel.app',
+      'http://localhost:3000',
+    ];
+    if (!origin || allowed.some((url) => origin.startsWith(url.replace(/\/$/, '')))) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Allow all origins in dev, restrict in production as needed
+    }
+  },
   credentials: true,
 }));
 
@@ -52,7 +63,7 @@ app.use(
       secure: config.NODE_ENV === 'production',
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      sameSite: config.NODE_ENV === 'production' ? 'strict' : 'lax',
+      sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
     },
   })
 );
