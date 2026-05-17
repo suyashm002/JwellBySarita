@@ -15,30 +15,11 @@ export function useAuth() {
   return store;
 }
 
+// No redirects - open access for testing
 export function useRequireAuth() {
-  const auth = useAuth();
-
-  useEffect(() => {
-    if (!auth.isLoading && !auth.isAuthenticated) {
-      window.location.href = '/login';
-    }
-  }, [auth.isLoading, auth.isAuthenticated]);
-
-  return auth;
+  return useAuth();
 }
 
 export function useRequireAdmin() {
-  const auth = useAuth();
-
-  useEffect(() => {
-    if (!auth.isLoading) {
-      if (!auth.isAuthenticated) {
-        window.location.href = '/login';
-      } else if (auth.user?.role !== 'ADMIN' && auth.user?.role !== 'STAFF') {
-        window.location.href = '/';
-      }
-    }
-  }, [auth.isLoading, auth.isAuthenticated, auth.user?.role]);
-
-  return auth;
+  return useAuth();
 }
