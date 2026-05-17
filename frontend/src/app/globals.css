@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --color-primary-50: #FDF2F4;
+  --color-primary-100: #FAE5E8;
+  --color-primary-200: #F5CCD2;
+  --color-primary-300: #E8A5AE;
+  --color-primary-400: #D48B95;
+  --color-primary-500: #B76E79;
+  --color-primary-600: #A25A64;
+  --color-primary-700: #8A4C55;
+  --color-primary-800: #734049;
+  --color-primary-900: #5E3540;
+  --color-primary-950: #3D1F28;
+
+  --color-secondary-50: #FCF3F4;
+  --color-secondary-100: #F8E4E7;
+  --color-secondary-200: #F2CDD2;
+  --color-secondary-300: #E5A3AC;
+  --color-secondary-400: #D17682;
+  --color-secondary-500: #A8485A;
+  --color-secondary-600: #8C3545;
+  --color-secondary-700: #722F37;
+  --color-secondary-800: #612A32;
+  --color-secondary-900: #53272F;
+  --color-secondary-950: #2E1116;
+
+  --color-accent-50: #FBF8EB;
+  --color-accent-100: #F7EFCF;
+  --color-accent-200: #EFDE9F;
+  --color-accent-300: #E5C866;
+  --color-accent-400: #D4AF37;
+  --color-accent-500: #C89B2A;
+  --color-accent-600: #AC7A21;
+  --color-accent-700: #8A5B1E;
+  --color-accent-800: #734A20;
+  --color-accent-900: #633E22;
+  --color-accent-950: #3A2010;
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFAF7;
+  color: #1f2937;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f0ee;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B76E79;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A25A64;
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(183, 110, 121, 0.25);
+  color: #2D1F22;
+}
+
+/* Utility class for heading font */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Container utility */
+.container-wide {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-wide {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-wide {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
