@@ -42,7 +42,7 @@ export async function createCampaign(req: Request, res: Response, next: NextFunc
 
 export async function updateCampaign(req: Request, res: Response, next: NextFunction) {
   try {
-    const campaign = await metaAdsService.updateCampaign(req.params.id, req.body);
+    const campaign = await metaAdsService.updateCampaign(req.params.id as string, req.body);
     return sendSuccess(res, campaign, 'Campaign updated');
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -54,7 +54,7 @@ export async function updateCampaign(req: Request, res: Response, next: NextFunc
 
 export async function pauseCampaign(req: Request, res: Response, next: NextFunction) {
   try {
-    const result = await metaAdsService.pauseCampaign(req.params.id);
+    const result = await metaAdsService.pauseCampaign(req.params.id as string);
     return sendSuccess(res, result, 'Campaign paused');
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -66,7 +66,7 @@ export async function pauseCampaign(req: Request, res: Response, next: NextFunct
 
 export async function resumeCampaign(req: Request, res: Response, next: NextFunction) {
   try {
-    const result = await metaAdsService.resumeCampaign(req.params.id);
+    const result = await metaAdsService.resumeCampaign(req.params.id as string);
     return sendSuccess(res, result, 'Campaign resumed');
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -78,7 +78,7 @@ export async function resumeCampaign(req: Request, res: Response, next: NextFunc
 
 export async function deleteCampaign(req: Request, res: Response, next: NextFunction) {
   try {
-    const result = await metaAdsService.deleteCampaign(req.params.id);
+    const result = await metaAdsService.deleteCampaign(req.params.id as string);
     return sendSuccess(res, result, 'Campaign deleted');
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -94,7 +94,7 @@ export async function getCampaignInsights(req: Request, res: Response, next: Nex
       req.query.since && req.query.until
         ? { since: req.query.since as string, until: req.query.until as string }
         : undefined;
-    const insights = await metaAdsService.getCampaignInsights(req.params.id, dateRange);
+    const insights = await metaAdsService.getCampaignInsights(req.params.id as string, dateRange);
     return sendSuccess(res, insights);
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -106,7 +106,7 @@ export async function getCampaignInsights(req: Request, res: Response, next: Nex
 
 export async function getAdSets(req: Request, res: Response, next: NextFunction) {
   try {
-    const adSets = await metaAdsService.getAdSets(req.params.id);
+    const adSets = await metaAdsService.getAdSets(req.params.id as string);
     return sendSuccess(res, adSets);
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -118,7 +118,7 @@ export async function getAdSets(req: Request, res: Response, next: NextFunction)
 
 export async function createAdSet(req: Request, res: Response, next: NextFunction) {
   try {
-    const adSet = await metaAdsService.createAdSet(req.params.id, req.body);
+    const adSet = await metaAdsService.createAdSet(req.params.id as string, req.body);
     return sendSuccess(res, adSet, 'Ad set created', 201);
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -130,7 +130,7 @@ export async function createAdSet(req: Request, res: Response, next: NextFunctio
 
 export async function getAds(req: Request, res: Response, next: NextFunction) {
   try {
-    const ads = await metaAdsService.getAds(req.params.id);
+    const ads = await metaAdsService.getAds(req.params.id as string);
     return sendSuccess(res, ads);
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -142,7 +142,7 @@ export async function getAds(req: Request, res: Response, next: NextFunction) {
 
 export async function createAd(req: Request, res: Response, next: NextFunction) {
   try {
-    const ad = await metaAdsService.createAd(req.params.id, req.body);
+    const ad = await metaAdsService.createAd(req.params.id as string, req.body);
     return sendSuccess(res, ad, 'Ad created', 201);
   } catch (error: any) {
     if (error.response?.data?.error) {
@@ -158,7 +158,7 @@ export async function getAdInsights(req: Request, res: Response, next: NextFunct
       req.query.since && req.query.until
         ? { since: req.query.since as string, until: req.query.until as string }
         : undefined;
-    const insights = await metaAdsService.getAdInsights(req.params.id, dateRange);
+    const insights = await metaAdsService.getAdInsights(req.params.id as string, dateRange);
     return sendSuccess(res, insights);
   } catch (error: any) {
     if (error.response?.data?.error) {
