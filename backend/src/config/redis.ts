@@ -2,10 +2,14 @@ import Redis from 'ioredis';
 import { config } from './index';
 
 const redisOptions: any = {
-  maxRetriesPerRequest: 3,
+  maxRetriesPerRequest: null, // Required for BullMQ and to avoid crash on temp disconnects
+  enableReadyCheck: false,
   retryStrategy(times: number) {
-    const delay = Math.min(times * 50, 2000);
+    const delay = Math.min(times * 200, 5000);
     return delay;
+  },
+  reconnectOnError(err: Error) {
+    return err.message.includes('READONLY') || err.message.includes('ECONNRESET');
   },
 };
 
@@ -17,7 +21,7 @@ if (config.REDIS_URL.startsWith('rediss://')) {
 export const redis = new Redis(config.REDIS_URL, redisOptions);
 
 redis.on('error', (err) => {
-  console.error('Redis connection error:', err.message);
+  console.error('Redis error:', err.message);
 });
 
 redis.on('connect', () => {
