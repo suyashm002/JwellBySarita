@@ -101,7 +101,7 @@ export default function AdminDashboard() {
         />
         <StatsCard
           title="Abandoned Cart Rate"
-          value={`${parseFloat(data?.abandonedCartRate || '0')}%`}
+          value={`${parseFloat(String(data?.abandonedCartRate ?? '0'))}%`}
           icon={ShoppingBag}
           color="amber"
         />
