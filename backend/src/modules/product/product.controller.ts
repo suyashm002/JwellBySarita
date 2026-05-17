@@ -13,7 +13,7 @@ export class ProductController {
         sortOrder: (req.query.sortOrder as 'asc' | 'desc') || 'desc',
         categoryId: req.query.categoryId as string | undefined,
         search: req.query.search as string | undefined,
-        silverPurity: req.query.silverPurity as string | undefined,
+        silverPurity: req.query.silverPurity as 'STERLING_925' | 'FINE_999' | undefined,
         gemstoneType: req.query.gemstoneType as string | undefined,
         isFeatured: req.query.isFeatured === 'true' ? true : undefined,
         isBestseller: req.query.isBestseller === 'true' ? true : undefined,

@@ -25,7 +25,7 @@ export async function getRecoveryMetrics(req: Request, res: Response, next: Next
 
 export async function manualOutreach(req: Request, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const { channel, message } = req.body;
     await abandonedCartService.manualOutreach(id, channel, message);
     return sendSuccess(res, null, 'Message sent successfully');

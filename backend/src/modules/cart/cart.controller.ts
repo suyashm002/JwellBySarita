@@ -37,7 +37,7 @@ export class CartController {
     try {
       const userId = req.user?.id;
       const sessionId = req.session.id;
-      const { itemId } = req.params;
+      const itemId = req.params.itemId as string;
       const { quantity } = req.body as UpdateCartItemInput;
 
       const cartId = await cartService.getOrCreateCart(userId, sessionId);
@@ -53,7 +53,7 @@ export class CartController {
     try {
       const userId = req.user?.id;
       const sessionId = req.session.id;
-      const { itemId } = req.params;
+      const itemId = req.params.itemId as string;
 
       const cartId = await cartService.getOrCreateCart(userId, sessionId);
       await cartService.removeItem(cartId, itemId);
@@ -146,7 +146,7 @@ export class CartController {
     try {
       const userId = req.user!.id;
       const sessionId = req.session.id;
-      const { itemId } = req.params;
+      const itemId = req.params.itemId as string;
 
       const cartId = await cartService.getOrCreateCart(userId, sessionId);
       await cartService.saveForLater(cartId, itemId, userId);

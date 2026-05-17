@@ -74,7 +74,7 @@ export async function createGemstoneRate(req: Request, res: Response, next: Next
 
 export async function updateGemstoneRate(req: Request, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const rate = await pricingService.updateGemstoneRate(id, req.body);
     sendSuccess(res, rate, 'Gemstone rate updated');
   } catch (error) {
@@ -84,7 +84,7 @@ export async function updateGemstoneRate(req: Request, res: Response, next: Next
 
 export async function deleteGemstoneRate(req: Request, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await pricingService.deleteGemstoneRate(id);
     sendSuccess(res, null, 'Gemstone rate deactivated');
   } catch (error) {
@@ -116,7 +116,7 @@ export async function createMakingChargeRule(req: Request, res: Response, next: 
 
 export async function updateMakingChargeRule(req: Request, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const rule = await pricingService.updateMakingChargeRule(id, req.body);
     sendSuccess(res, rule, 'Making charge rule updated');
   } catch (error) {
@@ -126,7 +126,7 @@ export async function updateMakingChargeRule(req: Request, res: Response, next: 
 
 export async function deleteMakingChargeRule(req: Request, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await pricingService.deleteMakingChargeRule(id);
     sendSuccess(res, null, 'Making charge rule deactivated');
   } catch (error) {
@@ -156,7 +156,7 @@ export async function simulatePrice(req: Request, res: Response, next: NextFunct
 
 export async function calculateProductPrice(req: Request, res: Response, next: NextFunction) {
   try {
-    const { productId } = req.params;
+    const productId = req.params.productId as string;
     const breakdown = await pricingService.calculateProductPriceById(productId);
     sendSuccess(res, breakdown, 'Product price calculated');
   } catch (error) {

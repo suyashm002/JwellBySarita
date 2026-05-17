@@ -39,7 +39,7 @@ export class OrderController {
   async getOrderById(req: Request, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       const order = await orderService.getOrderById(id, userId);
 
@@ -70,7 +70,7 @@ export class OrderController {
 
   async updateStatus(req: Request, res: Response, next: NextFunction) {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { status, note } = req.body as UpdateOrderStatusInput;
 
       const order = await orderService.updateStatus(id, status, note);
@@ -84,7 +84,7 @@ export class OrderController {
   async cancelOrder(req: Request, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       const order = await orderService.cancelOrder(id, userId);
 
@@ -97,7 +97,7 @@ export class OrderController {
   async requestReturn(req: Request, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params.id as string;
       const data = req.body as ReturnRequestInput;
 
       const returnRequest = await orderService.requestReturn(id, userId, data);
@@ -110,7 +110,7 @@ export class OrderController {
 
   async processReturn(req: Request, res: Response, next: NextFunction) {
     try {
-      const { returnId } = req.params;
+      const returnId = req.params.returnId as string;
       const { approve, adminNote, refundAmount } = req.body as ProcessReturnInput;
 
       const result = await orderService.processReturn(
@@ -142,7 +142,7 @@ export class OrderController {
 
   async getInvoice(req: Request, res: Response, next: NextFunction) {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const userId = req.user!.id;
 
       // Verify user owns this order (unless admin)
