@@ -15,7 +15,7 @@ export async function getAll(req: Request, res: Response, next: NextFunction) {
 
 export async function getById(req: Request, res: Response, next: NextFunction) {
   try {
-    const coupon = await couponService.getById(req.params.id);
+    const coupon = await couponService.getById(req.params.id as string);
     if (!coupon) return sendError(res, 'Coupon not found', 404);
     return sendSuccess(res, coupon);
   } catch (error) {
@@ -34,7 +34,7 @@ export async function create(req: Request, res: Response, next: NextFunction) {
 
 export async function update(req: Request, res: Response, next: NextFunction) {
   try {
-    const coupon = await couponService.update(req.params.id, req.body);
+    const coupon = await couponService.update(req.params.id as string, req.body);
     return sendSuccess(res, coupon, 'Coupon updated');
   } catch (error) {
     next(error);
@@ -43,7 +43,7 @@ export async function update(req: Request, res: Response, next: NextFunction) {
 
 export async function remove(req: Request, res: Response, next: NextFunction) {
   try {
-    await couponService.delete(req.params.id);
+    await couponService.delete(req.params.id as string);
     return sendSuccess(res, null, 'Coupon deactivated');
   } catch (error) {
     next(error);

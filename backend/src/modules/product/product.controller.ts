@@ -71,7 +71,7 @@ export class ProductController {
 
   async getBySlug(req: Request, res: Response, next: NextFunction) {
     try {
-      const product = await productService.getBySlug(req.params.slug);
+      const product = await productService.getBySlug(req.params.slug as string);
       sendSuccess(res, product, 'Product retrieved successfully');
     } catch (error) {
       next(error);
@@ -89,7 +89,7 @@ export class ProductController {
 
   async update(req: Request, res: Response, next: NextFunction) {
     try {
-      const product = await productService.update(req.params.id, req.body);
+      const product = await productService.update(req.params.id as string, req.body);
       sendSuccess(res, product, 'Product updated successfully');
     } catch (error) {
       next(error);
@@ -98,7 +98,7 @@ export class ProductController {
 
   async delete(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await productService.delete(req.params.id);
+      const result = await productService.delete(req.params.id as string);
       sendSuccess(res, result, 'Product deleted successfully');
     } catch (error) {
       next(error);
@@ -108,7 +108,7 @@ export class ProductController {
   async getRelated(req: Request, res: Response, next: NextFunction) {
     try {
       const limit = parseInt(req.query.limit as string) || 8;
-      const products = await productService.getRelated(req.params.id, limit);
+      const products = await productService.getRelated(req.params.id as string, limit);
       sendSuccess(res, products, 'Related products retrieved successfully');
     } catch (error) {
       next(error);

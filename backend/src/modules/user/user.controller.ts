@@ -49,7 +49,7 @@ export class UserController {
   async updateAddress(req: Request, res: Response, next: NextFunction) {
     try {
       const data = req.body as UpdateAddressInput;
-      const address = await userService.updateAddress(req.user!.id, req.params.addressId, data);
+      const address = await userService.updateAddress(req.user!.id, req.params.addressId as string, data);
       return sendSuccess(res, address, 'Address updated');
     } catch (error) {
       next(error);
@@ -58,7 +58,7 @@ export class UserController {
 
   async deleteAddress(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await userService.deleteAddress(req.user!.id, req.params.addressId);
+      const result = await userService.deleteAddress(req.user!.id, req.params.addressId as string);
       return sendSuccess(res, null, result.message);
     } catch (error) {
       next(error);
@@ -82,7 +82,7 @@ export class UserController {
 
   async getCustomerDetail(req: Request, res: Response, next: NextFunction) {
     try {
-      const customer = await userService.getCustomerDetail(req.params.customerId);
+      const customer = await userService.getCustomerDetail(req.params.customerId as string);
       return sendSuccess(res, customer, 'Customer detail fetched');
     } catch (error) {
       next(error);

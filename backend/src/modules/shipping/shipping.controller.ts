@@ -15,7 +15,7 @@ export async function checkServiceability(req: Request, res: Response, next: Nex
 
 export async function trackOrder(req: Request, res: Response, next: NextFunction) {
   try {
-    const result = await shippingService.trackShipment(req.params.orderId);
+    const result = await shippingService.trackShipment(req.params.orderId as string);
     return sendSuccess(res, result);
   } catch (error) {
     next(error);

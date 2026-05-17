@@ -22,7 +22,7 @@ export async function addToWishlist(req: Request, res: Response, next: NextFunct
 
 export async function removeFromWishlist(req: Request, res: Response, next: NextFunction) {
   try {
-    await wishlistService.removeFromWishlist(req.user!.id, req.params.productId);
+    await wishlistService.removeFromWishlist(req.user!.id, req.params.productId as string);
     return sendSuccess(res, null, 'Removed from wishlist');
   } catch (error) {
     next(error);

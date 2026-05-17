@@ -25,7 +25,7 @@ export class CategoryController {
 
   async getBySlug(req: Request, res: Response, next: NextFunction) {
     try {
-      const category = await categoryService.getBySlug(req.params.slug);
+      const category = await categoryService.getBySlug(req.params.slug as string);
       sendSuccess(res, category, 'Category retrieved successfully');
     } catch (error) {
       next(error);
@@ -43,7 +43,7 @@ export class CategoryController {
 
   async update(req: Request, res: Response, next: NextFunction) {
     try {
-      const category = await categoryService.update(req.params.id, req.body);
+      const category = await categoryService.update(req.params.id as string, req.body);
       sendSuccess(res, category, 'Category updated successfully');
     } catch (error) {
       next(error);
@@ -52,7 +52,7 @@ export class CategoryController {
 
   async delete(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await categoryService.delete(req.params.id);
+      const result = await categoryService.delete(req.params.id as string);
       sendSuccess(res, result, 'Category deleted successfully');
     } catch (error) {
       next(error);
